@@ -1,161 +1,164 @@
-# Resume Builder
+# 📄 Resume Builder
 
-A secure, full-stack resume builder application built with Next.js, TypeScript, and PostgreSQL.
+A modern, full-stack resume builder application built with Next.js, TypeScript, and a professional design system. Create, customize, and export professional resumes with ease.
 
-## 🚀 Features
+![Resume Builder](https://img.shields.io/badge/Next.js-15.5.5-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
-- **Secure Authentication**: NextAuth.js with Google OAuth
-- **Type-Safe**: Strict TypeScript with no `any` types
-- **Security-First**: Input validation, sanitization, and rate limiting
-- **Modern UI**: Clean, responsive design with Tailwind CSS
-- **PDF Export**: Generate professional PDF resumes
-- **Real-time Preview**: Live preview as you build
-- **Multiple Templates**: Professional resume templates
-- **Database**: PostgreSQL with Drizzle ORM
+## ✨ Features
 
-## 🛠️ Tech Stack
+### 🎨 **Modern UI/UX**
+- **Collapsible Sidebar Navigation** with smooth animations
+- **Professional Design System** with 4-point spacing and typography
+- **Dark/Light Theme** with system preference detection
+- **Responsive Layout** that works on all devices
+- **Interactive Tooltips** using shadcn/ui components
 
-- **Frontend**: Next.js 15, React 19, TypeScript
-- **Styling**: Tailwind CSS 4
-- **Database**: PostgreSQL with Drizzle ORM
-- **Authentication**: NextAuth.js
-- **PDF Generation**: @react-pdf/renderer
-- **Validation**: Zod
-- **State Management**: Zustand
-- **Deployment**: Vercel
+### 🔐 **Authentication & Security**
+- **Google OAuth Integration** with NextAuth.js
+- **Secure Session Management** with HTTP-only cookies
+- **Input Validation** using Zod schemas
+- **HTML Sanitization** with DOMPurify
+- **Rate Limiting** for API endpoints
+- **CSRF Protection** and security headers
 
-## 📋 Prerequisites
+### 🗄️ **Database & Backend**
+- **PostgreSQL Database** with Supabase
+- **Drizzle ORM** for type-safe database operations
+- **Repository Pattern** for clean data access
+- **Service Layer** for business logic
+- **RESTful API** with proper error handling
 
-Before you begin, ensure you have:
+### 🛠️ **Developer Experience**
+- **TypeScript** with strict type checking
+- **ESLint & Prettier** for code quality
+- **Docker Support** for consistent development
+- **Hot Reload** with Next.js development server
+- **Comprehensive Error Handling**
 
-1. **Node.js** (v18 or higher)
-2. **npm** or **bun** package manager
-3. **PostgreSQL database** (Neon, Supabase, or local)
-4. **Google OAuth credentials**
+## 🚀 Quick Start
 
-## 🔧 Environment Setup
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- PostgreSQL database (or Supabase account)
 
-### 1. Clone and Install
+### Installation
 
-```bash
-git clone <repository-url>
-cd resume-builder
-npm install
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Hitvardhan-Singh-Solanki/resume-builder.git
+   cd resume-builder
+   ```
 
-### 2. Environment Variables
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Copy the environment template and fill in your values:
+3. **Set up environment variables**
+   ```bash
+   cp env.template .env.local
+   ```
+   
+   Fill in your environment variables:
+   ```env
+   DATABASE_URL="your_postgresql_connection_string"
+   NEXTAUTH_URL="http://localhost:3000"
+   NEXTAUTH_SECRET="your_nextauth_secret"
+   GOOGLE_CLIENT_ID="your_google_client_id"
+   GOOGLE_CLIENT_SECRET="your_google_client_secret"
+   ```
 
-```bash
-cp env.template .env.local
-```
+4. **Set up the database**
+   ```bash
+   npm run db:generate
+   npm run db:push
+   ```
 
-**Required Environment Variables:**
+5. **Start the development server**
+   ```bash
+   npm run dev:stable
+   ```
 
-```env
-# Database
-DATABASE_URL=postgresql://username:password@host:port/database
-
-# Authentication
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your_nextauth_secret_key
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-```
-
-### 3. Database Setup
-
-Choose one of these database providers:
-
-#### Option A: Neon (Recommended)
-1. Sign up at [Neon](https://neon.tech)
-2. Create a new project
-3. Copy the connection string to `DATABASE_URL`
-
-#### Option B: Supabase
-1. Sign up at [Supabase](https://supabase.com)
-2. Create a new project
-3. Go to Settings → Database
-4. Copy the connection string to `DATABASE_URL`
-
-#### Option C: Local PostgreSQL
-1. Install PostgreSQL locally
-2. Create a database
-3. Set `DATABASE_URL=postgresql://username:password@localhost:5432/database_name`
-
-### 4. Google OAuth Setup
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing
-3. Enable Google+ API
-4. Go to "Credentials" → "Create Credentials" → "OAuth 2.0 Client ID"
-5. Set authorized redirect URI: `http://localhost:3000/api/auth/callback/google`
-6. Copy Client ID and Secret to your `.env.local`
-
-### 5. Database Migration
-
-```bash
-# Generate migration files
-npm run db:generate
-
-# Apply migrations
-npm run db:push
-```
-
-## 🚀 Development
-
-```bash
-# Start development server
-npm run dev
-
-# Type checking
-npm run type-check
-
-# Database studio (optional)
-npm run db:studio
-```
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🏗️ Project Structure
 
 ```
-src/
-├── app/                    # Next.js App Router
-│   ├── api/               # API routes
-│   ├── (auth)/           # Auth pages
-│   ├── dashboard/        # User dashboard
-│   └── builder/          # Resume builder
-├── components/           # React components
-│   ├── ui/              # Reusable UI components
-│   ├── resume/          # Resume-specific components
-│   ├── forms/           # Form components
-│   └── templates/       # Resume templates
-├── lib/                  # Business logic
-│   ├── db/              # Database layer
-│   │   ├── repositories/ # Data access
-│   │   └── schema/      # Database schema
-│   ├── services/        # Business logic
-│   ├── validations/     # Zod schemas
-│   ├── security/        # Security utilities
-│   └── auth/           # Authentication
-├── types/               # TypeScript types
-└── hooks/               # Custom React hooks
+resume-builder/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/               # API routes
+│   │   ├── auth/              # Authentication pages
+│   │   └── dashboard/         # Dashboard pages
+│   ├── components/            # React components
+│   │   ├── layout/            # Layout components
+│   │   ├── ui/                # shadcn/ui components
+│   │   └── templates/         # Resume templates
+│   ├── design-system/         # Design system tokens
+│   │   ├── tokens/            # Design tokens
+│   │   └── components/        # Design system components
+│   ├── lib/                   # Utility libraries
+│   │   ├── auth/              # Authentication config
+│   │   ├── db/                # Database layer
+│   │   ├── security/          # Security utilities
+│   │   └── services/          # Business logic
+│   ├── hooks/                 # Custom React hooks
+│   └── types/                 # TypeScript type definitions
+├── drizzle/                   # Database migrations
+├── public/                    # Static assets
+└── docs/                      # Documentation
 ```
 
-## 🔒 Security Features
+## 🎨 Design System
 
-- **Input Validation**: All inputs validated with Zod schemas
-- **Input Sanitization**: XSS protection with DOMPurify
-- **Rate Limiting**: API rate limiting to prevent abuse
-- **Authentication**: Secure session handling with NextAuth.js
-- **Authorization**: User-based access control
-- **Security Headers**: CSP, HSTS, and other security headers
-- **SQL Injection Protection**: Parameterized queries with Drizzle
+### Typography
+- **Font Family**: Inter (professional, clean)
+- **Font Sizes**: 2 sizes (16px, 18px) for minimalism
+- **Font Weights**: 4 weights (400, 500, 600, 700)
+- **Line Heights**: Optimized for readability
 
-## 🐳 Docker Development
+### Color Palette
+- **Primary**: Professional green (#22c55e)
+- **Neutral**: Clean grays for text and backgrounds
+- **Semantic**: Success, warning, error, info colors
+- **Theme Support**: Light and dark mode variants
+
+### Spacing System
+- **4-Point Grid**: Consistent 4px base unit
+- **Component Spacing**: xs, sm, md, lg, xl, 2xl
+- **Layout Spacing**: Responsive spacing for different screen sizes
+
+## 🔧 Available Scripts
 
 ```bash
-# Start with Docker Compose
+# Development
+npm run dev              # Start with Turbopack (experimental)
+npm run dev:stable       # Start with stable Next.js dev server
+npm run build            # Build for production
+npm run start            # Start production server
+
+# Database
+npm run db:generate      # Generate database migrations
+npm run db:migrate       # Run database migrations
+npm run db:push          # Push schema to database
+npm run db:studio        # Open Drizzle Studio
+
+# Code Quality
+npm run lint             # Run ESLint
+npm run type-check       # Run TypeScript type checking
+npm run clean            # Clean build cache
+```
+
+## 🐳 Docker Support
+
+### Development with Docker
+```bash
+# Start development environment
 docker-compose up -d
 
 # View logs
@@ -165,38 +168,50 @@ docker-compose logs -f
 docker-compose down
 ```
 
-## 🚀 Deployment
+### Production Build
+```bash
+# Build Docker image
+docker build -t resume-builder .
 
-### Vercel Deployment
-
-1. **Connect Repository**: Link your GitHub repository to Vercel
-2. **Environment Variables**: Add all environment variables in Vercel dashboard
-3. **Database**: Ensure your database is accessible from Vercel
-4. **Deploy**: Vercel will automatically deploy on push to main
-
-### Environment Variables for Production
-
-```env
-DATABASE_URL=your_production_database_url
-NEXTAUTH_URL=https://your-domain.vercel.app
-NEXTAUTH_SECRET=your_production_secret
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
+# Run container
+docker run -p 3000:3000 resume-builder
 ```
 
-## 📝 API Endpoints
+## 🔐 Environment Variables
 
-### Authentication
-- `GET /api/auth/signin` - Sign in page
-- `POST /api/auth/signin/google` - Google OAuth
-- `POST /api/auth/signout` - Sign out
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `DATABASE_URL` | PostgreSQL connection string | ✅ |
+| `NEXTAUTH_URL` | Application URL | ✅ |
+| `NEXTAUTH_SECRET` | NextAuth.js secret | ✅ |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID | ✅ |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret | ✅ |
+| `OPENAI_API_KEY` | OpenAI API key (optional) | ❌ |
 
-### Resumes
-- `GET /api/resumes` - Get user's resumes
-- `POST /api/resumes` - Create new resume
-- `GET /api/resumes/[id]` - Get specific resume
-- `PUT /api/resumes/[id]` - Update resume
-- `DELETE /api/resumes/[id]` - Delete resume
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Set environment variables in Vercel dashboard
+3. Deploy automatically on push to main branch
+
+### Manual Deployment
+```bash
+# Build the application
+npm run build
+
+# Start production server
+npm start
+```
+
+## 🛡️ Security Features
+
+- **Input Validation**: Zod schemas for all user inputs
+- **HTML Sanitization**: DOMPurify for XSS prevention
+- **Rate Limiting**: API endpoint protection
+- **CSRF Protection**: Cross-site request forgery prevention
+- **Security Headers**: Comprehensive HTTP security headers
+- **Session Security**: HTTP-only cookies and secure sessions
 
 ## 🧪 Testing
 
@@ -207,46 +222,51 @@ npm run type-check
 # Run linting
 npm run lint
 
-# Build for production
-npm run build
+# Test database connection
+curl http://localhost:3000/api/test-db
 ```
+
+## 📚 API Documentation
+
+### Authentication
+- `GET /api/auth/[...nextauth]` - NextAuth.js endpoints
+- `POST /api/auth/signin` - Sign in with Google
+
+### Resumes
+- `GET /api/resumes` - Get user's resumes
+- `POST /api/resumes` - Create new resume
+- `GET /api/resumes/[id]` - Get specific resume
+- `PUT /api/resumes/[id]` - Update resume
+- `DELETE /api/resumes/[id]` - Delete resume
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run type checking and linting
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Troubleshooting
+## 🙏 Acknowledgments
 
-### Common Issues
-
-1. **Database Connection Error**
-   - Verify `DATABASE_URL` is correct
-   - Ensure database is running and accessible
-   - Check firewall settings
-
-2. **Authentication Issues**
-   - Verify Google OAuth credentials
-   - Check `NEXTAUTH_URL` matches your domain
-   - Ensure redirect URI is correct
-
-3. **TypeScript Errors**
-   - Run `npm run type-check` to see all errors
-   - Ensure all environment variables are typed correctly
-   - Check for missing dependencies
-
-4. **Build Errors**
-   - Clear `.next` folder and rebuild
-   - Check for missing environment variables
-   - Verify all imports are correct
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [shadcn/ui](https://ui.shadcn.com/) - Component library
+- [Drizzle ORM](https://orm.drizzle.team/) - TypeScript ORM
+- [NextAuth.js](https://next-auth.js.org/) - Authentication
+- [Supabase](https://supabase.com/) - Database hosting
 
 ## 📞 Support
 
-For support, please open an issue on GitHub or contact the development team.
+If you have any questions or need help, please:
+- Open an issue on GitHub
+- Check the documentation
+- Review the code examples
+
+---
+
+**Built with ❤️ by [Hitvardhan Singh Solanki](https://github.com/Hitvardhan-Singh-Solanki)**
