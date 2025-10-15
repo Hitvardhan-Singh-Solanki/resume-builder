@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { SidebarSkeleton } from "./SidebarSkeleton";
 import {
   Tooltip,
   TooltipContent,
@@ -19,7 +20,7 @@ import {
   LayoutDashboard,
   FileText,
   Layout,
-  X,
+  ChevronLeft,
   LogOut,
   User,
 } from "lucide-react";
@@ -67,6 +68,12 @@ export function Sidebar() {
     },
   ];
 
+  // Show skeleton while loading
+  if (isLoading) {
+    return <SidebarSkeleton isCollapsed={isCollapsed} />;
+  }
+
+  // Don't show sidebar if not authenticated
   if (!isAuthenticated) {
     return null;
   }
@@ -163,103 +170,100 @@ export function Sidebar() {
                 </svg>
               </button>
             </div>
-          ) : (
-            // Expanded state: Clickable logo + text + close button
-            <>
+            ) : (
+              // Expanded state: Full width clickable logo + text + close icon
               <button
                 onClick={handleToggle}
-                className="flex items-center space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors"
+                className="flex items-center justify-between w-full hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors"
               >
-                <div className="w-8 h-8 flex items-center justify-center">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-green-600 dark:text-green-400"
-                  >
-                    {/* Document icon with modern styling */}
-                    <rect
-                      x="6"
-                      y="4"
-                      width="16"
-                      height="22"
-                      rx="2"
-                      stroke="currentColor"
-                      strokeWidth="2"
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 flex items-center justify-center">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
                       fill="none"
-                    />
-                    {/* Lines representing text */}
-                    <line
-                      x1="9"
-                      y1="9"
-                      x2="19"
-                      y2="9"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    <line
-                      x1="9"
-                      y1="12"
-                      x2="17"
-                      y2="12"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    <line
-                      x1="9"
-                      y1="15"
-                      x2="19"
-                      y2="15"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    <line
-                      x1="9"
-                      y1="18"
-                      x2="15"
-                      y2="18"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    {/* Corner fold */}
-                    <path
-                      d="M18 4 L22 4 L22 8"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                    />
-                    {/* Green accent dot */}
-                    <circle
-                      cx="24"
-                      cy="8"
-                      r="3"
-                      fill="currentColor"
-                      className="text-green-500"
-                    />
-                  </svg>
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="text-green-600 dark:text-green-400"
+                    >
+                      {/* Document icon with modern styling */}
+                      <rect
+                        x="6"
+                        y="4"
+                        width="16"
+                        height="22"
+                        rx="2"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      {/* Lines representing text */}
+                      <line
+                        x1="9"
+                        y1="9"
+                        x2="19"
+                        y2="9"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                      <line
+                        x1="9"
+                        y1="12"
+                        x2="17"
+                        y2="12"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                      <line
+                        x1="9"
+                        y1="15"
+                        x2="19"
+                        y2="15"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                      <line
+                        x1="9"
+                        y1="18"
+                        x2="15"
+                        y2="18"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                      {/* Corner fold */}
+                      <path
+                        d="M18 4 L22 4 L22 8"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                      />
+                      {/* Green accent dot */}
+                      <circle
+                        cx="24"
+                        cy="8"
+                        r="3"
+                        fill="currentColor"
+                        className="text-green-500"
+                      />
+                    </svg>
+                  </div>
+                  {shouldShowText && (
+                    <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                      Resume Builder
+                    </span>
+                  )}
                 </div>
                 {shouldShowText && (
-                  <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                    Resume Builder
-                  </span>
+                  <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                 )}
               </button>
-              <button
-                onClick={handleToggle}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-              >
-                <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-              </button>
-            </>
-          )}
+            )}
         </div>
 
         {/* Navigation */}
