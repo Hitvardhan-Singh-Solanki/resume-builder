@@ -1,0 +1,12 @@
+.git
+.next
+node_modules
+.env*
+.DS_Store
+*.log
+.vercel
+Dockerfile
+docker-compose.yml
+README.md
+drizzle
+*.md
