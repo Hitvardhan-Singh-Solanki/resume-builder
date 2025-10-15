@@ -72,7 +72,7 @@ export function Sidebar() {
   }
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={300}>
       <div
         className={`bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex flex-col h-screen ${
           isCollapsed ? "w-16" : "w-64"
