@@ -19,11 +19,12 @@ export default function NotFound() {
           <Heading1 className="text-gray-900 dark:text-gray-100">
             Page Not Found
           </Heading1>
-          
+
           <Body className="text-gray-600 dark:text-gray-400">
-            The page you&apos;re looking for doesn&apos;t exist or has been moved.
+            The page you&apos;re looking for doesn&apos;t exist or has been
+            moved.
           </Body>
-          
+
           <Caption className="text-gray-500 dark:text-gray-500">
             Error 404
           </Caption>
@@ -37,7 +38,7 @@ export default function NotFound() {
               Go to Dashboard
             </Link>
           </Button>
-          
+
           <Button variant="outline" asChild className="w-full">
             <Link href="javascript:history.back()">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -50,8 +51,8 @@ export default function NotFound() {
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
           <Caption className="text-gray-500 dark:text-gray-500">
             Need help?{" "}
-            <Link 
-              href="/dashboard" 
+            <Link
+              href="/dashboard"
               className="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors"
             >
               Contact support

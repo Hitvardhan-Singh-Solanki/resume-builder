@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import * as React from "react";
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const TooltipProvider = TooltipPrimitive.Provider
+const TooltipProvider = TooltipPrimitive.Provider;
 
-const Tooltip = TooltipPrimitive.Root
+const Tooltip = TooltipPrimitive.Root;
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipTrigger = TooltipPrimitive.Trigger;
 
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
@@ -31,14 +31,14 @@ const TooltipContent = React.forwardRef<
         // Smooth entrance animations
         "animate-in fade-in-0 zoom-in-95 duration-300 ease-out",
         "data-[side=bottom]:slide-in-from-top-2",
-        "data-[side=left]:slide-in-from-right-2", 
+        "data-[side=left]:slide-in-from-right-2",
         "data-[side=right]:slide-in-from-left-2",
         "data-[side=top]:slide-in-from-bottom-2",
         // Smooth exit animations
         "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:duration-200 data-[state=closed]:ease-in",
         "data-[state=closed]:data-[side=bottom]:slide-out-to-top-2",
         "data-[state=closed]:data-[side=left]:slide-out-to-right-2",
-        "data-[state=closed]:data-[side=right]:slide-out-to-left-2", 
+        "data-[state=closed]:data-[side=right]:slide-out-to-left-2",
         "data-[state=closed]:data-[side=top]:slide-out-to-bottom-2",
         // Transform origin for smooth animations
         "origin-[--radix-tooltip-content-transform-origin]",
@@ -49,7 +49,7 @@ const TooltipContent = React.forwardRef<
       {...props}
     />
   </TooltipPrimitive.Portal>
-))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+));
+TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };
