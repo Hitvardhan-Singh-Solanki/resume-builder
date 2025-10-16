@@ -28,10 +28,10 @@ export default async function DashboardPage() {
     <AppLayout>
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <Heading1 className="text-gray-900 dark:text-gray-100">
+          <Heading1 className="text-foreground">
             Dashboard
           </Heading1>
-          <Caption className="mt-2 text-gray-600 dark:text-gray-400">
+          <Caption className="mt-2 text-muted-foreground">
             Manage your resumes
           </Caption>
         </div>
@@ -40,7 +40,7 @@ export default async function DashboardPage() {
           {resumes.map((resume) => (
             <Card key={resume.id}>
               <CardHeader>
-                <CardTitle className="text-gray-900 dark:text-gray-100">
+                <CardTitle className="text-foreground">
                   {resume.title}
                 </CardTitle>
                 <CardDescription>
@@ -57,7 +57,7 @@ export default async function DashboardPage() {
             </Card>
           ))}
 
-          <Card className="border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center">
+          <Card className="border-2 border-dashed border-border flex items-center justify-center">
             <CardContent className="text-center">
               <div className="text-4xl mb-2">+</div>
               <Button variant="ghost">Create New Resume</Button>

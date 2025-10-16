@@ -7,12 +7,12 @@ interface SidebarSkeletonProps {
 export function SidebarSkeleton({ isCollapsed = false }: SidebarSkeletonProps) {
   return (
     <div
-      className={`bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex flex-col h-screen ${
+      className={`bg-background shadow-lg border-r border-gray-200/30 dark:border-gray-700/30 transition-all duration-300 flex flex-col h-screen ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >
       {/* Header Skeleton */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between p-4 mb-2">
         {isCollapsed ? (
           <div className="flex items-center justify-center w-full">
             <Skeleton className="w-8 h-8 rounded-lg" />
@@ -29,13 +29,13 @@ export function SidebarSkeleton({ isCollapsed = false }: SidebarSkeletonProps) {
       </div>
 
       {/* Navigation Skeleton */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 px-4 py-2 space-y-1">
         {Array.from({ length: 3 }).map((_, index) => (
           <div
             key={index}
             className={`flex items-center ${
               isCollapsed ? "justify-center" : "space-x-3"
-            } px-3 py-2`}
+            } px-3 py-3 rounded-xl`}
           >
             <Skeleton className="w-5 h-5 rounded" />
             {!isCollapsed && <Skeleton className="h-4 w-20" />}
@@ -44,7 +44,7 @@ export function SidebarSkeleton({ isCollapsed = false }: SidebarSkeletonProps) {
       </nav>
 
       {/* User Section Skeleton */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="p-4 mt-4">
         {/* Theme Toggle Skeleton */}
         <div className="flex items-center justify-center mb-4">
           {isCollapsed ? (

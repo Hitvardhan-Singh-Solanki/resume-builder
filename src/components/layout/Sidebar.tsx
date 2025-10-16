@@ -82,18 +82,18 @@ export function Sidebar() {
   return (
     <TooltipProvider delayDuration={300}>
       <div
-        className={`bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex flex-col h-screen ${
+        className={`bg-background shadow-lg border-r border-gray-200/30 dark:border-gray-700/30 transition-all duration-300 flex flex-col h-screen ${
           isCollapsed ? "w-16" : "w-64"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 mb-2">
           {isCollapsed ? (
             // Collapsed state: Clickable logo centered
             <div className="flex items-center justify-center w-full">
               <button
                 onClick={handleToggle}
-                className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="w-8 h-8 flex items-center justify-center hover:bg-muted rounded-lg transition-colors"
               >
                 <ResumeBuilderLogo className="text-green-600 dark:text-green-400" />
               </button>
@@ -102,27 +102,27 @@ export function Sidebar() {
             // Expanded state: Full width clickable logo + text + close icon
             <button
               onClick={handleToggle}
-              className="flex items-center justify-between w-full hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors"
+              className="flex items-center justify-between w-full hover:bg-muted rounded-lg p-2 transition-colors"
             >
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 flex items-center justify-center">
                   <ResumeBuilderLogo className="text-green-600 dark:text-green-400" />
                 </div>
                 {shouldShowText && (
-                  <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                  <span className="text-sm font-semibold text-foreground">
                     Resume Builder
                   </span>
                 )}
               </div>
               {shouldShowText && (
-                <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <ChevronLeft className="w-5 h-5 text-muted-foreground" />
               )}
             </button>
           )}
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className="flex-1 px-4 py-2 space-y-1">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const linkContent = (
@@ -131,10 +131,10 @@ export function Sidebar() {
                 href={item.href}
                 className={`flex items-center ${
                   isCollapsed ? "justify-center" : "space-x-3"
-                } px-3 py-2 rounded-lg transition-colors ${
+                } px-3 py-3 rounded-xl transition-all duration-200 ${
                   isActive(item.href)
-                    ? "text-green-600 bg-green-50 dark:text-green-400 dark:bg-green-900/20"
-                    : "text-gray-700 hover:text-green-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-green-400 dark:hover:bg-gray-700"
+                    ? "text-green-700 bg-green-50 dark:text-green-400 dark:bg-green-900/10 shadow-sm"
+                    : "text-foreground hover:text-green-600 hover:bg-muted/50"
                 }`}
               >
                 <Icon className="w-5 h-5 flex-shrink-0" />
@@ -158,7 +158,7 @@ export function Sidebar() {
         </nav>
 
         {/* User Section - Fixed at bottom */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="p-4 mt-4">
           {/* Theme Toggle */}
           <div className="flex items-center justify-center mb-4">
             {isCollapsed ? (
@@ -176,7 +176,7 @@ export function Sidebar() {
               <div className="flex items-center space-x-3 w-full">
                 <ThemeToggle />
                 {shouldShowText && (
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span className="text-sm font-medium text-muted-foreground">
                     Theme
                   </span>
                 )}
@@ -210,10 +210,10 @@ export function Sidebar() {
                 )}
                 {shouldShowText && (
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                    <p className="text-sm font-medium text-foreground truncate">
                       {user.name}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                    <p className="text-xs text-muted-foreground truncate">
                       {user.email}
                     </p>
                   </div>
